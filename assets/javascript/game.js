@@ -8,56 +8,45 @@ var randomCountry = [
 ];
 
 //Computer selects random country name
-var computerGeneratedOption;
+var countryRandomlySelected;
 var userInput;
 var counter = 9;
 var lossCounter = 0;
 var winCounter = 0;
 var userInputArray = [];
 
-function generateRandomCountry() {
-  var computerCountrySelection = Math.floor(Math.random() * 6);
-
-  computerGeneratedOption = randomCountry[computerCountrySelection];
-
-  console.log(computerGeneratedOption);
-}
-
 function userKeyboardInput() {
   generateRandomCountry();
   document.addEventListener("keyup", function(e) {
-    // given counter is at 0, this is my last chance
-    // the actual letter is e
-    // I select k
-    userInput = e.key;
+    userInput = e.key.toLowerCase();
     displayUserInput();
-    increaseCounter();
-
-    trackWinsOrLosses();
+    decreaseCounter();
   });
 }
-userKeyboardInput();
 
-function startGame() {}
+function startGame() {
+  alert("LETS ROCK AND ROLL");
+  userKeyboardInput();
+}
+startGame();
 
 function displayUserInput() {
   if (counter > 0) {
     document.getElementById("guessesdone").innerHTML += `${userInput} `;
-  } else {
-    // resetAllCounters();
   }
 }
 
-function increaseCounter() {
+function decreaseCounter() {
   if (counter > 0) {
     document.getElementById("guessesLeft").innerHTML = counter--;
+    trackWinsOrLosses();
   } else {
     alert("GAME OVER");
-    resetAllCounters();
+    resetGame();
   }
 }
 function trackWinsOrLosses() {
-  var displayMe = computerGeneratedOption.indexOf(userInput);
+  var displayMe = countryRandomlySelected.indexOf(userInput);
   if (displayMe >= 0) {
     winCounter++;
     document.getElementById("win").innerHTML = winCounter;
@@ -67,8 +56,7 @@ function trackWinsOrLosses() {
   }
 }
 
-// Reset all counters.. ******* WORK ON THIS figure out why losses is not resetting
-function resetAllCounters() {
+function resetGame() {
   userInput = "";
   counter = 9;
   lossCounter = 0;
@@ -79,3 +67,20 @@ function resetAllCounters() {
   document.getElementById("guessesLeft").innerHTML = counter;
   document.getElementById("guessesdone").innerHTML = userInput;
 }
+
+function generateRandomCountry() {
+  var randomComputerNumber = Math.floor(Math.random() * 6);
+
+  countryRandomlySelected = randomCountry[randomComputerNumber].toLowerCase();
+
+  console.log(countryRandomlySelected);
+}
+
+// function iterateUserInputOverCompOption() {
+//   for (let i = countryRandomlySelected.length - 1; i >= 0; i--) {
+//     if (countryRandomlySelected[i] === userInput) {
+//       countryRandomlySelected.splice(i, 1);
+//     }
+//   }
+// }
+// iterateUserInputOverCompOption();

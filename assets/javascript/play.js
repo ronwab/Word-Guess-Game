@@ -1,6 +1,20 @@
-testing = [1, 2, 3, 5, 7, 8, 8, 9, 9];
+// testing = [1, 2, 3, 5, 7, 8, 8, 9, 9];
+testing = "Madonna";
 
 var x = 5;
+
+var emptyArray = [];
+for (i = 0; i < testing.length; i++) {
+  emptyArray = testing.split("");
+  console.log(emptyArray);
+}
+
+//Split the array using empty string .split('')
+
+months.splice(4, 1, "May");
+// replaces 1 element at 4th index
+console.log(months);
+// expected output: Array ['Jan', 'Feb', 'March', 'April', 'May']
 
 function doSomething() {
   if (testing.indexOf(x)) {
